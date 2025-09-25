@@ -144,7 +144,7 @@ void main() {
   lottoPlay();
 
   print("-------------------------------");
-  print("클래스 써보기");
+  print("클래스 연습");
 
   List<int> winNum = [9, 19, 29, 35, 37, 38]; // 당첨번호
   Lotto newlotto = Lotto();
