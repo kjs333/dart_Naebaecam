@@ -84,6 +84,51 @@ void lottoPlay() {
   print("현재 발급한 로또 번호 : $myLotto");
 }
 
+class Lotto {
+  List<int> num = [];
+
+  void Pick() {
+    Set<int> numSet = {};
+    while (numSet.length < 6) {
+      int n = Random().nextInt(45);
+      numSet.add(n + 1);
+    }
+    List<int> numList = numSet.toList();
+    numList.sort();
+    num = numList;
+    print("현재 발급한 로또 번호 : $num");
+  }
+
+  void Check(List<int> win) {
+    if (num.isEmpty) {
+      Pick();
+    }
+
+    int count = 0;
+
+    for (var i in num) {
+      if (win.contains(i)) {
+        count++;
+      }
+    }
+
+    String s = "당첨 여부 : ";
+    if (count >= 5) {
+      s += '1등';
+    } else if (count == 4) {
+      s += '2등';
+    } else if (count == 3) {
+      s += '3등';
+    } else {
+      s += '당첨 실패!';
+    }
+
+    print(s);
+    num.clear();
+    print("현재 발급한 로또 번호 : $num");
+  }
+}
+
 void main() {
   P1(84);
 
@@ -97,4 +142,11 @@ void main() {
   print("도전 문제");
 
   lottoPlay();
+
+  print("-------------------------------");
+  print("클래스 써보기");
+
+  List<int> winNum = [9, 19, 29, 35, 37, 38]; // 당첨번호
+  Lotto newlotto = Lotto();
+  newlotto.Check(winNum);
 }
